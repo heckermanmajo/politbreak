@@ -23,8 +23,21 @@ put_post(
       <input type="hidden" name="action" value="create_paragraph">
       <input type="hidden" name="post_id" value="<?= $id ?>">
       <h2>Neuen Absatz hinzufügen</h2>
+
       <p>
         <label class="w3-text-blue"><b>Inhalt</b>
+          <label>
+            <select name="type">
+              <option value="h1"> Header 1 </option>
+              <option value="h1"> Header 2 </option>
+              <option value="h1"> Header 3 </option>
+              <option value="h1"> Header 4 </option>
+              <option value="h1"> Header 5 </option>
+              <option value="def"> Definition </option>
+              <option value="q"> Question </option>
+              <option value="text" selected> Text-Paragraph </option>
+            </select>
+          </label>
           <textarea class="w3-input w3-border" name="content" rows="10"></textarea>
         </label>
       </p>

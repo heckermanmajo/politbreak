@@ -54,35 +54,21 @@ if(isset($_POST)){
   <title>Politbreak</title>
   <!-- w3-css -->
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <!-- j query -->
+  <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 </head>
 <body class="w3-padding">
 <?php if ($login): ?>
-<header>
+<header class="w3-card w3-padding" style="margin-bottom: 7px">
   <nav>
     <a class="w3-button w3-purple" href="?p=home">Home</a>
     <a class="w3-button w3-purple" href="?p=mynews">News</a>
+    <a class="w3-button w3-purple" href="?p=profiles">Profiles</a>
     <a class="w3-button w3-purple" href="?p=connections">Connections</a>
     <a class="w3-button w3-purple" href="?p=settings">Settings</a>
     <a class="w3-button w3-purple" href="?p=about">About</a>
+    <a class="w3-button w3-purple" href="?p=debug">About</a>
   </nav>
-  <hr>
-  <form method="post">
-    <input type="submit" name="action" value="create_database">
-  </form>
-  <form method="post">
-    <label>
-      <b> Kategorie des Posts: </b>
-      <select name="category">
-        <option value="wiki">Wiki Entry</option>
-        <option value="news" selected>News</option>
-        <option value="question">Question</option>
-        <option value="problem">Problem</option>
-        <option value="paper">Paper</option>
-        <option value="group">Group</option>
-      </select>
-    </label>
-    <input type="submit" name="action" value="create_post">
-  </form>
 </header>
 <?php endif; ?>
 
@@ -139,6 +125,14 @@ if($login) {
       
     case 'one_channel':
       include "one_channel.php";
+      break;
+  
+    case 'debug':
+      include "debug.php";
+      break;
+  
+    case 'profiles':
+      include "profiles.php";
       break;
       
     default:
