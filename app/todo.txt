@@ -1,0 +1,10 @@
+- profile images
+- links
+- mark down in display -> but very special
+- search
+- tags, search by tags
+- group application, group members
+- Post can be associated with a group
+- interests -> for users and then for groups
+- Rating of posts -> with comments
+- sort the rating

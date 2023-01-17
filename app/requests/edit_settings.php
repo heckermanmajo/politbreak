@@ -11,7 +11,7 @@ $data = $_POST;
 $db = getDb();
 $user_id = $_SESSION['user']->id;
 $user = $db->query(
-  "SELECT * FROM users WHERE id = $user_id"
+  "SELECT * FROM User WHERE id = $user_id"
 )->fetchObject(User::class);
 
 $_SESSION['user'] = $user;
