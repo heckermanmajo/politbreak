@@ -45,7 +45,7 @@ foreach ($channels as $channel) {
   echo "<div class='channel w3-card w3-padding' >";
   echo "<h3>$channel->title</h3>";
   echo "<p>$channel->description</p>";
-  echo "<a href='?p=chat&id=$channel->id'>Join</a>";
+  echo "<a href='?p=one_channel&id=$channel->id'>Join</a>";
   echo "</div>";
   echo "<hr>";
 }

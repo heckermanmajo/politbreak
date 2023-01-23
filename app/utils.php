@@ -99,7 +99,13 @@ function populate(
     if (is_int($key)) {
       continue;
     }
-    $object->$key = $value;
+    // check if the field is defined
+    if (property_exists($object, $key)) {
+      $object->$key = $value;
+    } else {
+      // mostly deprecated field
+      // echo "Property $key does not exist in class " . get_class($object)."<br>";
+    }
   }
   return $object;
 }
@@ -172,11 +178,12 @@ function put_post(
   echo "<h2>$post->title</h2>";
   echo "<p>$post->content</p>";
   echo "<p>$post->date</p>";
-  echo "<pre>", print_r($post, true), "</pre>";
+  #echo "<pre>", print_r($post, true), "</pre>";
+  echo "<hr>";
   if ($details_button) {
     echo "<a href='?p=one&id=$post->id' class='w3-button w3-blue'> Mehr Details ... </a>";
   }
-  if ($post->author_id == $_SESSION["user"]->id){
+  if ($post->author_id == $_SESSION["user"]->id) {
     if ($edit_button) {
       echo "&nbsp;";
       echo "<a href='?p=edit&id=$post->id' class='w3-button w3-blue'> Editieren ... </a>";

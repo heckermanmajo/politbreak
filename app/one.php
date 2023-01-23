@@ -48,6 +48,14 @@ put_post(
   </form>
 <?php
 
+if ($post->category == "forum") {
+  echo "
+    <button>
+      Join this group.
+    </button>
+  ";
+}
+
 // load the paragraphs
 $statement = $db->prepare(
   "SELECT * FROM PostParagraph WHERE post_id = :id ORDER BY id ASC");
@@ -71,3 +79,44 @@ foreach ($paragraphs as $paragraph) {
   echo "</div>";
 }
 
+$statement = $db->prepare(
+  "SELECT * FROM PostComment WHERE post_id = :id ORDER BY id ASC");
+
+$statement->execute(['id' => $id]);
+
+$comments = $statement->fetchAll(PDO::FETCH_ASSOC);
+$comments = array_map(
+  fn($comment) => populate(new PostComment(), $comment),
+  $comments
+);
+
+?>
+
+<form method="post">
+  <input type="hidden" name="action" value="create_post_comment">
+  <div class="w3-container">
+    <h2>Neuen Kommentar hinzufügen</h2>
+    <p>
+      <label class="w3-text-blue"><b>Inhalt</b>
+        <textarea class="w3-input w3-border" name="content" rows="10"></textarea>
+      </label>
+    </p>
+    <select name="comment_category">
+      <option>Ergänzung</option>
+      <option>Frage</option>
+      <option>Andere Perspektive</option>
+      <option>Kritik</option>
+      <option>Zusätzliche Information</option>
+    </select>
+    <p>
+      <button class="w3-btn w3-blue">Kommentar hinzufügen</button>
+    </p>
+  </div>
+</form>
+
+<?php
+foreach ($comments as $comment) {
+  echo "<div class='w3-card w3-padding'>";
+  echo "<p>$comment[content]</p>";
+  echo "</div>";
+}

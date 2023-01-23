@@ -61,7 +61,7 @@ class Post {
   public int $id = 0;
   public string $title = '';
   public string $author_id = '';
-
+  public int $parent_post = 0;
   public string $content = '';
   public string $date = '';
   public int $draft = 1;
@@ -166,6 +166,8 @@ class ChannelMessage {
   public string $content = '';
   public string $date = '';
   public string $status = '';
+  public array $j_children = [];
+  public int $j_depth = 0;
 }
 
 $user_defined_classes = array(
